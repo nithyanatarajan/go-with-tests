@@ -1,8 +1,10 @@
-package print
+package print_test
 
 import (
-	"github.com/nithyanatarajan/go-with-tests/test"
 	"testing"
+
+	"github.com/nithyanatarajan/go-with-tests/print"
+	. "github.com/nithyanatarajan/go-with-tests/test"
 )
 
 func TestRepeat(t *testing.T) {
@@ -21,8 +23,8 @@ func TestRepeat(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got := Repeat(tt.args.str, tt.args.times)
-			test.AssertEqual(t, got, tt.want)
+			got := print.Repeat(tt.args.str, tt.args.times)
+			AssertEqual(t, got, tt.want)
 		})
 	}
 }

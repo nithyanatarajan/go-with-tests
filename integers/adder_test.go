@@ -1,9 +1,10 @@
 package integers_test
 
 import (
+	"testing"
+
 	"github.com/nithyanatarajan/go-with-tests/integers"
 	. "github.com/nithyanatarajan/go-with-tests/test"
-	"testing"
 )
 
 func TestAdd(t *testing.T) {

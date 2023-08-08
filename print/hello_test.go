@@ -1,10 +1,11 @@
 package print_test
 
 import (
-	. "github.com/nithyanatarajan/go-with-tests/test"
 	"testing"
+
+	"github.com/nithyanatarajan/go-with-tests/print"
+	. "github.com/nithyanatarajan/go-with-tests/test"
 )
-import "github.com/nithyanatarajan/go-with-tests/print"
 
 func TestHello(t *testing.T) {
 	t.Run("should print Hello world when no name is given", func(t *testing.T) {
