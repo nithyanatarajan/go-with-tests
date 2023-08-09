@@ -12,7 +12,6 @@ func TestHello(t *testing.T) {
 		const want = "Hello, World!"
 		got := print.Hello("", "")
 		AssertEqual(t, got, want)
-
 	})
 
 	t.Run("should print name if given", func(t *testing.T) {

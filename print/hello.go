@@ -2,7 +2,8 @@ package print
 
 import "fmt"
 
-// Hello prints given name in given language. Defaults to 'Hello, World!' if no name or language is passed
+// Hello prints given name in given language.
+// Defaults to 'Hello, World!' if no name or language is passed
 func Hello(name string, language string) string {
 	if name == "" {
 		name = "World"

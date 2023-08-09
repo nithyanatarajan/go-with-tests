@@ -16,7 +16,8 @@ func Sum(numbersToSum ...int) int {
 	return result
 }
 
-// SumAll takes a varying number of slices, returning a new slice containing the totals for each slice passed in
+// SumAll takes a varying number of slices,
+// returning a new slice containing the totals for each slice passed in
 func SumAll(numbersListToSum ...[]int) []int {
 	var result []int
 
@@ -27,7 +28,10 @@ func SumAll(numbersListToSum ...[]int) []int {
 	return result
 }
 
-// SumAllTails takes a varying number of slices, returning a new slice containing the totals of the "tails" of each slice. The tail of a collection is all items in the collection except the first one (the "head").
+// SumAllTails takes a varying number of slices,
+// returning a new slice containing the totals of the "tails" of each slice.
+// The tail of a collection is all items in the collection except
+// the first one (the "head").
 func SumAllTails(numbersListToSum ...[]int) []int {
 	var result []int
 

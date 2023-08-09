@@ -18,8 +18,16 @@ func TestRepeat(t *testing.T) {
 		want string
 	}{
 		{"should return empty if empty", args{}, ""},
-		{"should repeat given string 5 times", args{str: "a", times: 5}, "aaaaa"},
-		{"should repeat given string 10 times", args{str: "ab", times: 10}, "abababababababababab"},
+		{
+			"should repeat given string 5 times",
+			args{str: "a", times: 5},
+			"aaaaa",
+		},
+		{
+			"should repeat given string 10 times",
+			args{str: "ab", times: 10},
+			"abababababababababab",
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {

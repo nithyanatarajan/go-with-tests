@@ -16,17 +16,19 @@ func TestAdd(t *testing.T) {
 }
 
 func TestSum(t *testing.T) {
-	t.Run("should return 0 when no numbers are given", func(t *testing.T) {
-		want := 0
-		got := integers.Sum()
-		AssertEqualInt(t, got, want)
-	})
+	t.Run("should return 0 when no numbers are given",
+		func(t *testing.T) {
+			want := 0
+			got := integers.Sum()
+			AssertEqualInt(t, got, want)
+		})
 
-	t.Run("should return same number when only one number is given", func(t *testing.T) {
-		want := 10
-		got := integers.Sum(10)
-		AssertEqualInt(t, got, want)
-	})
+	t.Run("should return same number when only one number is given",
+		func(t *testing.T) {
+			want := 10
+			got := integers.Sum(10)
+			AssertEqualInt(t, got, want)
+		})
 
 	t.Run("should add ten numbers", func(t *testing.T) {
 		numbers := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
@@ -37,53 +39,61 @@ func TestSum(t *testing.T) {
 }
 
 func TestSumAll(t *testing.T) {
-	t.Run("should return empty array when no arrays are given", func(t *testing.T) {
-		var want []int
-		got := integers.SumAll()
-		AssertEqualIntArray(t, got, want)
-	})
+	t.Run("should return empty array when no arrays are given",
+		func(t *testing.T) {
+			var want []int
+			got := integers.SumAll()
+			AssertEqualIntArray(t, got, want)
+		})
 
-	t.Run("should return sum of given array", func(t *testing.T) {
-		want := []int{3}
-		got := integers.SumAll([]int{1, 1, 1})
-		AssertEqualIntArray(t, got, want)
-	})
+	t.Run("should return sum of given array",
+		func(t *testing.T) {
+			want := []int{3}
+			got := integers.SumAll([]int{1, 1, 1})
+			AssertEqualIntArray(t, got, want)
+		})
 
-	t.Run("should return sum of all given arrays", func(t *testing.T) {
-		want := []int{3, 9}
-		got := integers.SumAll([]int{1, 2}, []int{0, 9})
-		AssertEqualIntArray(t, got, want)
-	})
+	t.Run("should return sum of all given arrays",
+		func(t *testing.T) {
+			want := []int{3, 9}
+			got := integers.SumAll([]int{1, 2}, []int{0, 9})
+			AssertEqualIntArray(t, got, want)
+		})
 }
 
 func TestSumAllTails(t *testing.T) {
-	t.Run("should return empty array when no arrays are given", func(t *testing.T) {
-		var want []int
-		got := integers.SumAllTails()
-		AssertEqualIntArray(t, got, want)
-	})
+	t.Run("should return empty array when no arrays are given",
+		func(t *testing.T) {
+			var want []int
+			got := integers.SumAllTails()
+			AssertEqualIntArray(t, got, want)
+		})
 
-	t.Run("should return sum of tails of given array", func(t *testing.T) {
-		want := []int{2}
-		got := integers.SumAllTails([]int{1, 1, 1})
-		AssertEqualIntArray(t, got, want)
-	})
+	t.Run("should return sum of tails of given array",
+		func(t *testing.T) {
+			want := []int{2}
+			got := integers.SumAllTails([]int{1, 1, 1})
+			AssertEqualIntArray(t, got, want)
+		})
 
-	t.Run("should return sum of tails of all given arrays", func(t *testing.T) {
-		want := []int{2, 9}
-		got := integers.SumAllTails([]int{1, 2}, []int{0, 9})
-		AssertEqualIntArray(t, got, want)
-	})
+	t.Run("should return sum of tails of all given arrays",
+		func(t *testing.T) {
+			want := []int{2, 9}
+			got := integers.SumAllTails([]int{1, 2}, []int{0, 9})
+			AssertEqualIntArray(t, got, want)
+		})
 
-	t.Run("should return 0 when empty array is given", func(t *testing.T) {
-		want := []int{0}
-		got := integers.SumAllTails([]int{})
-		AssertEqualIntArray(t, got, want)
-	})
+	t.Run("should return 0 when empty array is given",
+		func(t *testing.T) {
+			want := []int{0}
+			got := integers.SumAllTails([]int{})
+			AssertEqualIntArray(t, got, want)
+		})
 
-	t.Run("should return 0 when only one element is present in array", func(t *testing.T) {
-		want := []int{0}
-		got := integers.SumAllTails([]int{1})
-		AssertEqualIntArray(t, got, want)
-	})
+	t.Run("should return 0 when only one element is present in array",
+		func(t *testing.T) {
+			want := []int{0}
+			got := integers.SumAllTails([]int{1})
+			AssertEqualIntArray(t, got, want)
+		})
 }
