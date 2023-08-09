@@ -5,11 +5,23 @@ This repository follows [this gitbook](https://quii.gitbook.io/learn-go-with-tes
 ## To run application
 
 ```shell
-go run github.com/nithyanatarajan/go-with-tests
+go run .
 ```
 
 ## To run tests
 
 ```shell
-go test github.com/nithyanatarajan/go-with-tests/...
+go test ./...
+```
+
+## To lint
+
+```shell
+golangci-lint run -v
+```
+
+## To fix lint
+
+```shell
+golangci-lint run --fix
 ```
