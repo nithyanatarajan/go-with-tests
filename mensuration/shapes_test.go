@@ -13,9 +13,21 @@ func TestArea(t *testing.T) {
 		shape   mensuration.Shape
 		hasArea float64
 	}{
-		{name: "Rectangle", shape: mensuration.Rectangle{Height: 12, Width: 10}, hasArea: 120.0},
-		{name: "Circle", shape: mensuration.Circle{Radius: 10}, hasArea: 314.1592653589793},
-		{name: "Triangle", shape: mensuration.Triangle{Side1: 10, Side2: 11, Side3: 3}, hasArea: 14.696938456699069},
+		{
+			name:    "Rectangle",
+			shape:   mensuration.Rectangle{Height: 12, Width: 10},
+			hasArea: 120.0,
+		},
+		{
+			name:    "Circle",
+			shape:   mensuration.Circle{Radius: 10},
+			hasArea: 314.1592653589793,
+		},
+		{
+			name:    "Triangle",
+			shape:   mensuration.Triangle{Side1: 10, Side2: 11, Side3: 3},
+			hasArea: 14.696938456699069,
+		},
 	}
 
 	for _, tt := range areaTests {
@@ -24,7 +36,6 @@ func TestArea(t *testing.T) {
 			want := tt.hasArea
 			AssertEqual(t, got, want)
 		})
-
 	}
 }
 
@@ -34,9 +45,21 @@ func TestPerimeter(t *testing.T) {
 		shape        mensuration.Shape
 		hasPerimeter float64
 	}{
-		{name: "Rectangle", shape: mensuration.Rectangle{Height: 12, Width: 10}, hasPerimeter: 44.0},
-		{name: "Circle", shape: mensuration.Circle{Radius: 10}, hasPerimeter: 62.83185307179586},
-		{name: "Triangle", shape: mensuration.Triangle{Side1: 10, Side2: 11, Side3: 3}, hasPerimeter: 24},
+		{
+			name:         "Rectangle",
+			shape:        mensuration.Rectangle{Height: 12, Width: 10},
+			hasPerimeter: 44,
+		},
+		{
+			name:         "Circle",
+			shape:        mensuration.Circle{Radius: 10},
+			hasPerimeter: 62.83185307179586,
+		},
+		{
+			name:         "Triangle",
+			shape:        mensuration.Triangle{Side1: 10, Side2: 11, Side3: 3},
+			hasPerimeter: 24,
+		},
 	}
 
 	for _, tt := range areaTests {
@@ -45,6 +68,5 @@ func TestPerimeter(t *testing.T) {
 			want := tt.hasPerimeter
 			AssertEqual(t, got, want)
 		})
-
 	}
 }
