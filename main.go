@@ -7,5 +7,6 @@ import (
 )
 
 func main() {
+	// revive:disable-next-line
 	fmt.Println(print.Hello("", ""))
 }
