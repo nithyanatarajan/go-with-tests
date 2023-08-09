@@ -7,48 +7,44 @@ import (
 	. "github.com/nithyanatarajan/go-with-tests/test"
 )
 
-func TestRectangle_Perimeter(t *testing.T) {
-	rectangle := mensuration.Rectangle{
-		Height: 10.0,
-		Width:  10.0,
+func TestArea(t *testing.T) {
+	areaTests := []struct {
+		name    string
+		shape   mensuration.Shape
+		hasArea float64
+	}{
+		{name: "Rectangle", shape: mensuration.Rectangle{Height: 12, Width: 10}, hasArea: 120.0},
+		{name: "Circle", shape: mensuration.Circle{Radius: 10}, hasArea: 314.1592653589793},
+		{name: "Triangle", shape: mensuration.Triangle{Side1: 10, Side2: 11, Side3: 3}, hasArea: 14.696938456699069},
 	}
-	want := 40.0
 
-	got := rectangle.Perimeter()
+	for _, tt := range areaTests {
+		t.Run(tt.name, func(t *testing.T) {
+			got := tt.shape.Area()
+			want := tt.hasArea
+			AssertEqual(t, got, want)
+		})
 
-	AssertEqual(t, got, want)
+	}
 }
 
-func TestRectangle_Area(t *testing.T) {
-	rectangle := mensuration.Rectangle{
-		Height: 12.0,
-		Width:  10.0,
+func TestPerimeter(t *testing.T) {
+	areaTests := []struct {
+		name         string
+		shape        mensuration.Shape
+		hasPerimeter float64
+	}{
+		{name: "Rectangle", shape: mensuration.Rectangle{Height: 12, Width: 10}, hasPerimeter: 44.0},
+		{name: "Circle", shape: mensuration.Circle{Radius: 10}, hasPerimeter: 62.83185307179586},
+		{name: "Triangle", shape: mensuration.Triangle{Side1: 10, Side2: 11, Side3: 3}, hasPerimeter: 24},
 	}
-	want := 120.0
 
-	got := rectangle.Area()
+	for _, tt := range areaTests {
+		t.Run(tt.name, func(t *testing.T) {
+			got := tt.shape.Perimeter()
+			want := tt.hasPerimeter
+			AssertEqual(t, got, want)
+		})
 
-	AssertEqual(t, got, want)
-}
-
-func TestCircle_Perimeter(t *testing.T) {
-	rectangle := mensuration.Circle{
-		Radius: 10.0,
 	}
-	want := 62.83185307179586
-
-	got := rectangle.Perimeter()
-
-	AssertEqual(t, got, want)
-}
-
-func TestCircle_Area(t *testing.T) {
-	rectangle := mensuration.Circle{
-		Radius: 10.0,
-	}
-	want := 314.1592653589793
-
-	got := rectangle.Area()
-
-	AssertEqual(t, got, want)
 }
