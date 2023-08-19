@@ -1,10 +1,13 @@
 package language
 
+// revive:disable:line-length-limit
 const (
 	ErrNotFound           = DictionaryErr("could not find the word you are looking for")
 	ErrWordAlreadyPresent = DictionaryErr("cannot add word, word already present")
 	ErrWordNotPresent     = DictionaryErr("cannot update word, word not present")
 )
+
+// revive:enable:line-length-limit
 
 type DictionaryErr string
 
