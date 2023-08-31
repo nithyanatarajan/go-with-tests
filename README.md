@@ -13,7 +13,8 @@ go run .
 ## To run tests
 
 ```shell
-go test ./...
+go test -v ./...
+go test -bench . -run=^benchmark ./...
 ```
 
 ## To lint
