@@ -2,12 +2,13 @@ package concurrency_test
 
 import (
 	"fmt"
-	"github.com/nithyanatarajan/go-with-tests/concurrency"
 	"testing"
 	"time"
+
+	"github.com/nithyanatarajan/go-with-tests/concurrency"
 )
 
-func slowStubWebsiteResponses(url string) bool {
+func slowStubWebsiteResponses(_ string) bool {
 	time.Sleep(20 * time.Millisecond)
 	return true
 }
