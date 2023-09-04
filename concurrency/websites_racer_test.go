@@ -24,7 +24,7 @@ func TestRacer(t *testing.T) {
 			fastURL := fastServer.URL
 			want := fastURL
 
-			got := concurrency.Racer(slowURL, fastURL)
+			got := concurrency.RacerCh(slowURL, fastURL)
 
 			test.AssertEqual(t, got, want)
 		})

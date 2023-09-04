@@ -15,8 +15,29 @@ func Racer(a, b string) (winner string) {
 	return b
 }
 
+func RacerCh(a, b string) (winner string) {
+	select {
+	case <-ping(a):
+		return a
+	case <-ping(b):
+		return b
+	}
+}
+func ping(url string) chan struct{} {
+	ch := make(chan struct{})
+	go func() {
+		checkResponse(url)
+		defer close(ch)
+	}()
+	return ch
+}
+
 func measureResponseTime(url string) time.Duration {
 	startTime := time.Now()
-	_, _ = http.Get(url)
+	checkResponse(url)
 	return time.Since(startTime)
+}
+
+func checkResponse(url string) {
+	_, _ = http.Get(url)
 }
