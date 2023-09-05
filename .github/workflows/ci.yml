@@ -1,6 +1,12 @@
 name: "Continuous Integration"
 
-on: [ push, pull_request ]
+on:
+  push:
+    branches-ignore:
+      - 'wip*'
+  pull_request:
+    branches-ignore:
+      - 'wip*'
 
 jobs:
   lint:
