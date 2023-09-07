@@ -84,6 +84,54 @@ var cases = []struct {
 		}{"Chris", profile{20, "Agra"}},
 		[]string{"Chris", "Agra"},
 	},
+
+	{
+		"when given string slice",
+		[]string{"Chris", "Agra"},
+		[]string{"Chris", "Agra"},
+	},
+
+	{
+		"when given int slice",
+		[]int{10, 20},
+		[]string{},
+	},
+
+	{
+		"when given struct slices",
+		[]profile{
+			{20, "Agra"},
+			{33, "London"},
+		},
+		[]string{"Agra", "London"},
+	},
+
+	{
+		"when given string array",
+		[2]string{"Chris", "Agra"},
+		[]string{"Chris", "Agra"},
+	},
+
+	{
+		"when given map",
+		map[string]string{"name": "Chris", "location": "Agra"},
+		[]string{"Chris", "Agra"},
+	},
+
+	{
+		"when given mixed type",
+		&struct {
+			name      string
+			profiles  [1]profile
+			relations map[string][]string
+		}{"Chris",
+			[1]profile{{20, "Agra"}},
+			map[string][]string{
+				"friends": {"Polly", "Molly"},
+				"enemies": {"Jolly"}},
+		},
+		[]string{"Chris", "Agra", "Polly", "Molly", "Jolly"},
+	},
 }
 
 func TestWalk(t *testing.T) {

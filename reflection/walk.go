@@ -13,6 +13,18 @@ func Walk(x any, fn func(input string)) {
 				Walk(value.Field(i), fn)
 			}
 		}
+	case reflect.Slice, reflect.Array:
+		{
+			for i := 0; i < value.Len(); i++ {
+				Walk(value.Index(i), fn)
+			}
+		}
+	case reflect.Map:
+		{
+			for _, key := range value.MapKeys() {
+				Walk(value.MapIndex(key), fn)
+			}
+		}
 	}
 }
 
