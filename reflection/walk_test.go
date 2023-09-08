@@ -132,6 +132,25 @@ var cases = []struct {
 		},
 		[]string{"Chris", "Agra", "Polly", "Molly", "Jolly"},
 	},
+
+	{
+		"when given function",
+		func() []profile {
+			return []profile{
+				{20, "Agra"},
+				{33, "London"},
+			}
+		},
+		[]string{"Agra", "London"},
+	},
+
+	{
+		"when given function with args",
+		func(pro profile) []profile {
+			return []profile{pro}
+		}(profile{20, "Agra"}),
+		[]string{"Agra"},
+	},
 }
 
 func TestWalk(t *testing.T) {

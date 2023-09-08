@@ -13,6 +13,16 @@ func Walk(x any, fn func(input string)) {
 		walkArray(value, fn)
 	case reflect.Map:
 		walkMap(value, fn)
+	case reflect.Func:
+		walkFunc(value, fn)
+	}
+}
+
+func walkFunc(value reflect.Value, fn func(input string)) {
+	{
+		for _, val := range value.Call(nil) {
+			Walk(val, fn)
+		}
 	}
 }
 
