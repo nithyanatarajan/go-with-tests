@@ -8,22 +8,34 @@ func Walk(x any, fn func(input string)) {
 	case reflect.String:
 		fn(value.String())
 	case reflect.Struct:
-		{
-			for i := 0; i < value.NumField(); i++ {
-				Walk(value.Field(i), fn)
-			}
-		}
+		walkStruct(value, fn)
 	case reflect.Slice, reflect.Array:
-		{
-			for i := 0; i < value.Len(); i++ {
-				Walk(value.Index(i), fn)
-			}
-		}
+		walkArray(value, fn)
 	case reflect.Map:
-		{
-			for _, key := range value.MapKeys() {
-				Walk(value.MapIndex(key), fn)
-			}
+		walkMap(value, fn)
+	}
+}
+
+func walkMap(value reflect.Value, fn func(input string)) {
+	{
+		for _, key := range value.MapKeys() {
+			Walk(value.MapIndex(key), fn)
+		}
+	}
+}
+
+func walkArray(value reflect.Value, fn func(input string)) {
+	{
+		for i := 0; i < value.Len(); i++ {
+			Walk(value.Index(i), fn)
+		}
+	}
+}
+
+func walkStruct(value reflect.Value, fn func(input string)) {
+	{
+		for i := 0; i < value.NumField(); i++ {
+			Walk(value.Field(i), fn)
 		}
 	}
 }
