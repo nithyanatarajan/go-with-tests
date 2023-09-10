@@ -15,6 +15,23 @@ func Walk(x any, fn func(input string)) {
 		walkMap(value, fn)
 	case reflect.Func:
 		walkFunc(value, fn)
+	case reflect.Chan:
+		walkChan(value, fn)
+	}
+}
+
+func walkChan(value reflect.Value, fn func(input string)) {
+	// for assignment; condition; increment
+	// for val, ok := value.Recv(); ok; val, ok = value.Recv() {
+	//	 Walk(val, fn)
+	// }
+
+	for {
+		val, ok := value.Recv()
+		if !ok {
+			break
+		}
+		Walk(val, fn)
 	}
 }
 

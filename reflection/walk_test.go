@@ -160,6 +160,18 @@ var cases = []struct {
 		func() {},
 		[]string{},
 	},
+
+	{
+		"when given channel",
+		createChannel(),
+		[]string{"Agra", "London"},
+	},
+
+	{
+		"when given empty channel",
+		emptyChannel(),
+		[]string{},
+	},
 }
 
 func TestWalk(t *testing.T) {
@@ -209,4 +221,22 @@ func TestWalk(t *testing.T) {
 		AssertContains(t, got, "Molly")
 		AssertContains(t, got, "Jolly")
 	})
+}
+
+func emptyChannel() chan profile {
+	aChannel := make(chan profile)
+	go func() {
+		close(aChannel)
+	}()
+	return aChannel
+}
+
+func createChannel() chan profile {
+	aChannel := make(chan profile)
+	go func() {
+		aChannel <- profile{33, "Agra"}
+		aChannel <- profile{34, "London"}
+		close(aChannel)
+	}()
+	return aChannel
 }
