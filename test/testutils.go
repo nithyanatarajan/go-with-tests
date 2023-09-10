@@ -5,6 +5,22 @@ import (
 	"testing"
 )
 
+func doesContain(haystack []string, needle string) bool {
+	contains := false
+	for _, x := range haystack {
+		if x == needle {
+			contains = true
+		}
+	}
+	return contains
+}
+func AssertContains(t *testing.T, haystack []string, needle string) {
+	t.Helper()
+	if !doesContain(haystack, needle) {
+		t.Errorf("expected %+v to contain %q but it didn't", haystack, needle)
+	}
+}
+
 func AssertEqual(t *testing.T, got, want any) {
 	t.Helper()
 	if !reflect.DeepEqual(got, want) {

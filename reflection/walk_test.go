@@ -77,6 +77,12 @@ var cases = []struct {
 	},
 
 	{
+		"when given empty struct",
+		struct{}{},
+		[]string{},
+	},
+
+	{
 		"when given pointers to things",
 		&struct {
 			name    string
@@ -107,30 +113,27 @@ var cases = []struct {
 	},
 
 	{
+		"when given empty slice",
+		[]profile{},
+		[]string{},
+	},
+
+	{
 		"when given string array",
 		[2]string{"Chris", "Agra"},
 		[]string{"Chris", "Agra"},
 	},
 
 	{
-		"when given map",
-		map[string]string{"name": "Chris", "location": "Agra"},
-		[]string{"Chris", "Agra"},
+		"when given empty array",
+		[1]profile{},
+		[]string{""},
 	},
 
 	{
-		"when given mixed type",
-		&struct {
-			name      string
-			profiles  [1]profile
-			relations map[string][]string
-		}{"Chris",
-			[1]profile{{20, "Agra"}},
-			map[string][]string{
-				"friends": {"Polly", "Molly"},
-				"enemies": {"Jolly"}},
-		},
-		[]string{"Chris", "Agra", "Polly", "Molly", "Jolly"},
+		"when given empty map",
+		map[string]string{},
+		[]string{},
 	},
 
 	{
@@ -151,6 +154,12 @@ var cases = []struct {
 		}(profile{20, "Agra"}),
 		[]string{"Agra"},
 	},
+
+	{
+		"when given empty function",
+		func() {},
+		[]string{},
+	},
 }
 
 func TestWalk(t *testing.T) {
@@ -164,4 +173,40 @@ func TestWalk(t *testing.T) {
 			AssertEqual(t, got, test.want)
 		})
 	}
+
+	t.Run("when given map", func(t *testing.T) {
+		input := map[string]string{"name": "Chris", "location": "Agra"}
+		got := make([]string, 0)
+		fn := func(str string) { got = append(got, str) }
+
+		reflection.Walk(input, fn)
+
+		AssertEqual(t, len(got), 2)
+		AssertContains(t, got, "Chris")
+		AssertContains(t, got, "Agra")
+	})
+
+	t.Run("when given mixed type", func(t *testing.T) {
+		input := &struct {
+			name      string
+			profiles  [1]profile
+			relations map[string][]string
+		}{"Chris",
+			[1]profile{{20, "Agra"}},
+			map[string][]string{
+				"friends": {"Polly", "Molly"},
+				"enemies": {"Jolly"}},
+		}
+		got := make([]string, 0)
+		fn := func(str string) { got = append(got, str) }
+
+		reflection.Walk(input, fn)
+
+		AssertEqual(t, len(got), 5)
+		AssertContains(t, got, "Chris")
+		AssertContains(t, got, "Agra")
+		AssertContains(t, got, "Polly")
+		AssertContains(t, got, "Molly")
+		AssertContains(t, got, "Jolly")
+	})
 }

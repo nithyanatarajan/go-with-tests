@@ -19,34 +19,26 @@ func Walk(x any, fn func(input string)) {
 }
 
 func walkFunc(value reflect.Value, fn func(input string)) {
-	{
-		for _, val := range value.Call(nil) {
-			Walk(val, fn)
-		}
+	for _, val := range value.Call(nil) {
+		Walk(val, fn)
 	}
 }
 
 func walkMap(value reflect.Value, fn func(input string)) {
-	{
-		for _, key := range value.MapKeys() {
-			Walk(value.MapIndex(key), fn)
-		}
+	for _, key := range value.MapKeys() {
+		Walk(value.MapIndex(key), fn)
 	}
 }
 
 func walkArray(value reflect.Value, fn func(input string)) {
-	{
-		for i := 0; i < value.Len(); i++ {
-			Walk(value.Index(i), fn)
-		}
+	for i := 0; i < value.Len(); i++ {
+		Walk(value.Index(i), fn)
 	}
 }
 
 func walkStruct(value reflect.Value, fn func(input string)) {
-	{
-		for i := 0; i < value.NumField(); i++ {
-			Walk(value.Field(i), fn)
-		}
+	for i := 0; i < value.NumField(); i++ {
+		Walk(value.Field(i), fn)
 	}
 }
 
