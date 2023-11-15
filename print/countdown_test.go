@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"testing"
 
-	print "github.com/nithyanatarajan/go-with-tests/print"
+	"github.com/nithyanatarajan/go-with-tests/print"
 	. "github.com/nithyanatarajan/go-with-tests/test"
 )
 
